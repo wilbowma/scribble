@@ -11,6 +11,7 @@
 (define-runtime-path normal-expected-path "bibtex.normal.txt")
 (define-runtime-path number-expected-path "bibtex.number.txt")
 (define-runtime-path escapes-expected-path "bibtex.escapes.txt")
+(define-runtime-path latex-escapes-path "bibtex.latex-escapes.txt")
 
 (define-syntax-rule (test-render* definer expected-path body generate-bibliography-id)
   (let ()
@@ -79,4 +80,7 @@
  (test-render escapes-expected-path (#:style number-style)
               (λ (~cite-id citet-id)
                 (citet-id "escape1")
-                (citet-id "hochreiter_long_1997"))))
+                (citet-id "hochreiter_long_1997")))
+ (test-render latex-escapes-path (#:style number-style)
+              (λ (~cite-id citet-id)
+                (citet-id "Braberman:2008:PPH:1375634.1375655"))))
